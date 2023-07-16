@@ -53,14 +53,15 @@ def extract_data(data, schema, retain_empty_lists=True, retain_empty_objects=Fal
 def main():
     # Set up the command-line argument parser
     parser = argparse.ArgumentParser(description="JSON Data Extractor")
+    parser.add_argument(
+        "--input_file", help="Path to the input JSON file", required=True)
+    parser.add_argument(
+        "--schema_file", help="Path to the schema JSON file", required=True)
+    parser.add_argument("--output_file", help="Path to the output JSON file")
     parser.add_argument("--retain_empty_lists", action="store_true",
                         help="Retain empty lists in the output")
     parser.add_argument("--retain_empty_objects", action="store_true",
                         help="Retain empty objects in the output")
-    parser.add_argument("--input_file", required=True,
-                        help="Path to the input JSON file")
-    parser.add_argument("--schema_file", required=True,
-                        help="Path to the schema JSON file")
     args = parser.parse_args()
 
     try:
@@ -76,17 +77,36 @@ def main():
         extracted_data = extract_data(
             input_data, schema_data, args.retain_empty_lists, args.retain_empty_objects)
 
-        # Print the extracted data
-        print("Extracted Data:")
-        print(json.dumps(extracted_data, indent=2))
+        # Save the extracted data to the output JSON file or print it on the console
+        if args.output_file:
+            with open(args.output_file, 'w') as file:
+                json.dump(extracted_data, file, indent=2)
+            print(
+                f"Data extracted successfully and saved to '{args.output_file}'.")
+        else:
+            print("Extracted Data:")
+            print(json.dumps(extracted_data, indent=2))
 
     # Handle file-related errors
     except FileNotFoundError as e:
-        print("Error: File not found.")
+        if str(e).startswith("[Errno 2]"):
+            if args.input_file in str(e):
+                print(f"Error: Input JSON file '{args.input_file}' not found.")
+            elif args.schema_file in str(e):
+                print(
+                    f"Error: Schema JSON file '{args.schema_file}' not found.")
+        else:
+            print("Error:", str(e))
     except json.JSONDecodeError as e:
-        print("Error: Invalid JSON format.")
-
-    # Handle other exceptions
+        if args.input_file in str(e):
+            print(
+                f"Error: Invalid JSON format in input JSON file '{args.input_file}': {str(e)}.")
+        elif args.schema_file in str(e):
+            print(
+                f"Error: Invalid JSON format in schema JSON file '{args.schema_file}': {str(e)}.")
+        else:
+            print(
+                f"Error: Invalid JSON format in file '{args.schema_file}': {str(e)}.")
     except Exception as e:
         print("Error:", str(e))
 

@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "name": "John",
+      "address": {
+        "state": "NY",
+        "country": "USA"
+      }
+    },
+    {
+      "name": "Alice",
+      "address": {
+        "state": "CA",
+        "country": "USA"
+      }
+    }
+  ]
+}
