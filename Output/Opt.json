@@ -5,14 +5,24 @@
       "address": {
         "state": "NY",
         "country": "USA"
-      }
+      },
+      "projects": [
+        {
+          "id": 1
+        }
+      ]
     },
     {
       "name": "Alice",
       "address": {
         "state": "CA",
         "country": "USA"
-      }
+      },
+      "projects": [
+        {
+          "id": 2
+        }
+      ]
     }
   ]
 }
