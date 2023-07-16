@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "name": true,
+      "address": {
+        "state": true,
+        "country": true
+      },
+      "projects": [
+        {
+          "id": true
+          
+        }
+      ]
+    }
+  ]
+}
