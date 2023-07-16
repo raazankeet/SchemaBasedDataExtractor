@@ -1,40 +1,29 @@
 {
   "users": [
     {
-      "id": 1,
       "name": "John",
-      "age": 25,
       "address": {
-        "street": "123 Main St",
-        "city": "New York",
         "state": "NY",
         "country": "USA"
       },
       "projects": [
         {
-          "id": 1,
-          "name": "Project A"
+          "id": 1
         }
       ]
     },
     {
-      "id": 2,
       "name": "Alice",
-      "age": 30,
       "address": {
-        "street": "456 Elm St",
-        "city": "San Francisco",
         "state": "CA",
         "country": "USA"
       },
       "projects": [
         {
-          "id": 2,
-          "name": "Project 222"
+          "id": 33
         },
         {
-          "id": 3,
-          "name": "Project 333"
+          "id": 44
         }
       ]
     }

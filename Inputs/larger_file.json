@@ -29,8 +29,12 @@
       },
       "projects": [
         {
-          "id": 2,
-          "name": "Project B"
+          "id": 33,
+          "name": "Project B33"
+        },
+        {
+          "id": 44,
+          "name": "Project B44"
         }
       ]
     }
